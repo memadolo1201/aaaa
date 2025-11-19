@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Luxury Navy & Gold Design System */
+    --background: 220 20% 97%;
+    --foreground: 220 50% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 50% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 50% 15%;
+
+    /* Navy Blue Primary */
+    --primary: 220 50% 20%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 220 50% 30%;
+    --primary-dark: 220 60% 12%;
+
+    /* Gold Accent */
+    --accent: 45 90% 55%;
+    --accent-foreground: 220 50% 15%;
+    --accent-light: 45 90% 65%;
+    --accent-dark: 45 85% 45%;
+
+    /* Secondary Navy */
+    --secondary: 220 40% 92%;
+    --secondary-foreground: 220 50% 15%;
+
+    --muted: 220 30% 94%;
+    --muted-foreground: 220 25% 45%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 30% 88%;
+    --input: 220 30% 90%;
+    --ring: 45 90% 55%;
+
+    --radius: 0.75rem;
+
+    /* Luxury Gradients */
+    --gradient-luxury: linear-gradient(135deg, hsl(220 50% 20%) 0%, hsl(220 60% 12%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 90% 55%) 0%, hsl(45 85% 45%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(220 20% 97%) 0%, hsl(220 30% 94%) 100%);
+
+    /* Luxury Shadows */
+    --shadow-luxury: 0 10px 40px -10px hsl(220 50% 20% / 0.3);
+    --shadow-gold: 0 8px 32px -8px hsl(45 90% 55% / 0.4);
+    --shadow-card: 0 4px 20px -4px hsl(220 50% 20% / 0.15);
+
+    /* Sidebar Luxury Theme */
+    --sidebar-background: 220 55% 16%;
+    --sidebar-foreground: 220 15% 92%;
+    --sidebar-primary: 45 90% 55%;
+    --sidebar-primary-foreground: 220 50% 15%;
+    --sidebar-accent: 220 50% 28%;
+    --sidebar-accent-foreground: 45 95% 60%;
+    --sidebar-border: 220 50% 22%;
+    --sidebar-ring: 45 90% 55%;
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+  }
+
+  .dark {
+    --background: 220 50% 12%;
+    --foreground: 220 20% 95%;
+    --card: 220 50% 15%;
+    --card-foreground: 220 20% 95%;
+    --popover: 220 50% 15%;
+    --popover-foreground: 220 20% 95%;
+    --primary: 45 90% 55%;
+    --primary-foreground: 220 50% 12%;
+    --secondary: 220 50% 20%;
+    --secondary-foreground: 220 20% 95%;
+    --muted: 220 50% 20%;
+    --muted-foreground: 220 20% 70%;
+    --accent: 45 90% 55%;
+    --accent-foreground: 220 50% 12%;
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 50% 22%;
+    --input: 220 50% 22%;
+    --ring: 45 90% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-cairo;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv03";
+  }
+
+  /* Force English numbers for dates and numbers */
+  .english-nums {
+    font-variant-numeric: lining-nums;
+    direction: ltr;
+    display: inline-block;
+  }
+
+  /* Luxury scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary/30;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/40 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/60;
+  }
+}
+
+@layer utilities {
+  /* Luxury Effects */
+  .luxury-card {
+    @apply bg-card border border-border rounded-xl shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.15)] transition-all duration-300 hover:shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.25)];
+  }
+
+  .gold-shimmer {
+    @apply relative overflow-hidden;
+  }
+
+  .gold-shimmer::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-full;
+    background: linear-gradient(90deg, transparent, hsl(var(--accent) / 0.3), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* RTL Support */
+  [dir="rtl"] .rtl\:rotate-180 {
+    transform: rotate(180deg);
+  }
+}
